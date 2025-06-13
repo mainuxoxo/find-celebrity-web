@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find Celebrity IDs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #121212, #1e1e1e);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5em;
+    }
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5em;
+    }
+    input[type="text"] {
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      width: 300px;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #00c896;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #009f78;
+    }
+    .footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔍 Find Celebrity Social Profiles</h1>
+  <p>Type a name to get Instagram, Twitter, Facebook profiles — powered by AI and DuckDuckGo.</p>
+  <input id="nameInput" type="text" placeholder="e.g. Elon Musk" />
+  <br />
+  <button onclick="search()">Search</button>
+  <div class="footer">Built with ❤️ by Any_Find | Free AI Tool</div>
+
+  <script>
+    function search() {
+      const name = document.getElementById("nameInput").value.trim();
+      if (name) {
+        window.location.href = `search.html?name=${encodeURIComponent(name)}`;
+      }
+    }
+  </script>
+</body>
+</html>
