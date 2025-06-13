@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search Result</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #0e0e0e;
+      color: #fff;
+      padding: 20px;
+    }
+    h2 {
+      color: #00f5d4;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 10px;
+      background: #1e1e1e;
+      padding: 10px;
+      border-radius: 8px;
+      transition: background 0.2s ease;
+    }
+    li:hover {
+      background: #2c2c2c;
+    }
+    a {
+      color: #00c896;
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .loading {
+      font-style: italic;
+      color: #aaa;
+    }
+    .ads {
+      margin-top: 30px;
+      text-align: center;
+      color: #888;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body onload="loadResults()">
+  <h2 id="heading">Searching...</h2>
+  <div class="loading" id="loading">Fetching social profiles, please wait...</div>
+  <div id="results"></div>
+
+  <div class="ads">
+    <!-- Placeholder for AdSense -->
+    <p>🔒 This site is 100% free. Your support keeps us going!</p>
+    <!-- Example: <script async src="https://your-adsense.js"></script> -->
+  </div>
+
+  <script>
+    async function loadResults() {
+      const params = new URLSearchParams(window.location.search);
+      const name = params.get("name") || "";
+      if (!name) return;
+      document.getElementById("heading").textContent = `🔎 Results for "${name}"`;
+
+      try {
+        const res = await fetch(`https://find-celebrity-bot.onrender.com/web?name=${encodeURIComponent(name)}`);
+        const html = await res.text();
+        document.getElementById("results").innerHTML = html;
+        document.getElementById("loading").style.display = "none";
+      } catch (e) {
+        document.getElementById("loading").textContent = "⚠️ Failed to fetch results. Try again later.";
+      }
+    }
+  </script>
+</body>
+</html>
